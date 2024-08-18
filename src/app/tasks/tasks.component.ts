@@ -1,14 +1,20 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TaskComponent } from './task/task.component';
+import { DUMMY_TASKS } from './../dummy-tasks';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [],
+  imports: [TaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-  tasks = input.required<{ id: string; idUser: string; name: string }[]>();
-  @Input() name?: string;
-  // name = input<string>();
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) name!: string;
+  tasks = DUMMY_TASKS;
+
+  get selectedUserTasks() {
+    return this.tasks.filter((t) => t.userId === this.id);
+  }
 }

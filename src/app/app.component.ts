@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   get selectedUserTasks() {
-    return this.tasks.filter((t) => t.idUser === this.selectedUserId);
+    return this.tasks.filter((t) => t.userId === this.selectedUserId);
   }
 
   get selectedUser() {
